@@ -43,22 +43,23 @@ Start:
     ldx #$00
 .Loop
     txa 
-    sta $1800,x
+    sta $2000,x
     inx 
     bne .Loop
     jmp .DrawCharacterSet
 .Exit
     rts 
 
+DisplayMode equ $03
 DisplayList:
-    db $70,$70,$70
-    db $42
-    dw $1800
+    db $70
+    db $40 + DisplayMode
+    dw $2000
 
-    db $02,$02,$02,$02,$02,$02
-    db $02,$02,$02,$02,$02,$02
-    db $02,$02,$02,$02,$02,$02
-    db $02,$02,$02,$02,$02
+    db DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode
+    db DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode
+    db DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode,DisplayMode
+    db DisplayMode,DisplayMode,DisplayMode ;,DisplayMode,DisplayMode
 
     db $41
     dw DisplayList
